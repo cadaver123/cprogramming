@@ -6,8 +6,9 @@
 Environment *load_file(char *filename) {
   FILE *file;
   char *line;
-  int col_count = -1;
+  int col_length = -1;
   size_t len = 0;
+  Node *nodes = malloc(sizeof(void));
 
   file = fopen(filename, "r");
 
@@ -18,17 +19,30 @@ Environment *load_file(char *filename) {
     return NULL;
   }
 
-  while (getline(&line, &len, file) != -1) {
-    if (col_count == -1) {
-      col_count = strlen(line);
-    } else if (col_count != strlen(line)) {
-      printf("All line should have the same length.");
+  for (int row = 0; getline(&line, &len, file) != -1; row++) {
+    if (row == 0) {
+      col_length = strlen(line);
+    }
+
+    if (col_length != strlen(line)) {
+      printf("All lines should have the same length.");
 
       fclose(file);
       return NULL;
     }
 
-    printf(line);
+    nodes = realloc(nodes, (row + 1) * col_length * sizeof(Node));
+
+    printf("%s", line);
+    for (int col = 0; col < col_length; col++) {
+      Node *node = malloc(sizeof(Node));
+      if (line[col] == '.') {
+        node->value = 1;
+        continue;
+      } else {
+        node->value = s
+      }
+    }
   }
 
   fclose(file);

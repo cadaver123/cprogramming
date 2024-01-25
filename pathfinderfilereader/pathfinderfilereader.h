@@ -7,6 +7,7 @@ typedef struct Environment Environment;
 
 struct Node {
   Node *neighbours[8];
+  int value;
 };
 
 struct Environment {
