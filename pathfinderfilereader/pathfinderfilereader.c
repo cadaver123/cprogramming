@@ -33,14 +33,15 @@ Environment *load_file(char *filename) {
 
     nodes = realloc(nodes, (row + 1) * col_length * sizeof(Node));
 
-    printf("%s", line);
+    printf("%s x", line);
     for (int col = 0; col < col_length; col++) {
       Node *node = malloc(sizeof(Node));
-      if (line[col] == '.') {
+      char point_value = line[col];
+      if (point_value == '.') {
         node->value = 1;
         continue;
       } else {
-        node->value = s
+        node->value = point_value - '0';
       }
     }
   }
